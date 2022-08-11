@@ -2,6 +2,7 @@ overrides:
   ceph:
     log-ignorelist:
       - must scrub before tier agent can activate
+      - \(POOL_APP_NOT_ENABLED\)
 tasks:
 - exec:
     client.0:
