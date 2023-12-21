@@ -6186,6 +6186,57 @@ options:
   level: dev
   desc: Time to wait during shutdown to deregister service with mgr
   default: 1
+# enable/disable MGR op tracking
+- name: mgr_enable_op_tracker
+  type: bool
+  level: advanced
+  default: true
+  with_legacy: true
+# The number of shards for holding the ops
+- name: mgr_num_op_tracker_shard
+  type: uint
+  level: advanced
+  default: 32
+  with_legacy: true
+# how many seconds old makes an op complaint-worthy
+- name: mgr_op_complaint_time
+  type: float
+  level: advanced
+  default: 30
+  fmt_desc: An operation becomes complaint worthy after the specified number
+    of seconds have elapsed.
+  with_legacy: true
+- name: mgr_op_log_threshold
+  type: int
+  level: advanced
+  default: 5
+  fmt_desc: How many operations logs to display at once.
+  with_legacy: true
+- name: mgr_op_history_size
+  type: uint
+  level: advanced
+  default: 20
+  fmt_desc: The maximum number of completed operations to track.
+  with_legacy: true
+# Oldest completed op to track
+- name: mgr_op_history_duration
+  type: uint
+  level: advanced
+  default: 600
+  fmt_desc: The oldest completed operation to track.
+  with_legacy: true
+# Max number of slow ops to track
+- name: mgr_op_history_slow_op_size
+  type: uint
+  level: advanced
+  default: 20
+  with_legacy: true
+# track the op if over this threshold
+- name: mgr_op_history_slow_op_threshold
+  type: float
+  level: advanced
+  default: 10
+  with_legacy: true
 - name: throttler_perf_counter
   type: bool
   level: advanced

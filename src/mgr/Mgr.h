@@ -26,6 +26,7 @@
 
 #include "DaemonServer.h"
 #include "PyModuleRegistry.h"
+#include "MgrOpRequest.h"
 
 #include "DaemonState.h"
 #include "ClusterState.h"
@@ -69,6 +70,10 @@ protected:
 
   bool initialized;
   bool initializing;
+
+private:
+  // -- op tracking --
+  OpTracker op_tracker;
 
 public:
   Mgr(MonClient *monc_, const MgrMap& mgrmap,
