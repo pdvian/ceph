@@ -3240,29 +3240,45 @@ will start to track new ops received afterwards.";
         ret = -EINVAL;
         goto out;
       }
+<<<<<<< HEAD
     }
     else if (admin_command == "dump_blocked_ops") {
+=======
+    } else if (admin_command == "dump_blocked_ops") {
+>>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
       if (!op_tracker.dump_ops_in_flight(f, true, filters)) {
         ss << error_str;
         ret = -EINVAL;
         goto out;
       }
+<<<<<<< HEAD
     }
     else if (admin_command == "dump_blocked_ops_count") {
+=======
+    } else if (admin_command == "dump_blocked_ops_count") {
+>>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
       if (!op_tracker.dump_ops_in_flight(f, true, filters, true)) {
         ss << error_str;
         ret = -EINVAL;
         goto out;
       }
+<<<<<<< HEAD
     }
     else if (admin_command == "dump_historic_ops") {
+=======
+    } else if (admin_command == "dump_historic_ops") {
+>>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
       if (!op_tracker.dump_historic_ops(f, false, filters)) {
         ss << error_str;
         ret = -EINVAL;
         goto out;
       }
+<<<<<<< HEAD
     }
     else if (admin_command == "dump_historic_ops_by_duration") {
+=======
+    } else if (admin_command == "dump_historic_ops_by_duration") {
+>>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
       if (!op_tracker.dump_historic_ops(f, true, filters)) {
         ss << error_str;
         ret = -EINVAL;

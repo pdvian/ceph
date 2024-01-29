@@ -106,10 +106,15 @@ void MgrOpRequest::mark_flag_point_string(uint8_t flag, const string& s) {
 bool MgrOpRequest::filter_out(const set<string>& filters)
 {
   set<entity_addr_t> addrs;
+<<<<<<< HEAD
 //  for (auto it = filters.begin(); it != filters.end(); it++) {
   for (const auto& filter : filters) {
     entity_addr_t addr;
 //    if (addr.parse((*it).c_str())) {
+=======
+  for (const auto& filter : filters) {
+    entity_addr_t addr;
+>>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
     if (addr.parse(filter.c_str())) {
       addrs.insert(addr);
     }
