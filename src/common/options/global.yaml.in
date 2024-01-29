@@ -6192,32 +6192,17 @@ options:
   desc: Enable / disable MGR Op Tracker
   default: true
   with_legacy: true
-<<<<<<< HEAD
-# The number of shards for holding the ops
-- name: mgr_num_op_tracker_shard
-  type: uint
-  level: advanced
-  default: 32
-  with_legacy: true
-# how many seconds old makes an op complaint-worthy
-=======
 - name: mgr_num_op_tracker_shard
   type: uint
   level: advanced
   desc: The number of shards for holding the ops
   default: 32
   with_legacy: true
->>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
 - name: mgr_op_complaint_time
   type: float
   level: advanced
   default: 30
-<<<<<<< HEAD
-  fmt_desc: An operation becomes complaint worthy after the specified number
-    of seconds have elapsed.
-=======
   desc: An operation becomes complaint worthy after the specified number of seconds have elapsed.
->>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
   with_legacy: true
 - name: mgr_op_log_threshold
   type: int
@@ -6231,41 +6216,23 @@ options:
   default: 20
   fmt_desc: The maximum number of completed operations to track.
   with_legacy: true
-<<<<<<< HEAD
-# Oldest completed op to track
-=======
->>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
 - name: mgr_op_history_duration
   type: uint
   level: advanced
   default: 600
-<<<<<<< HEAD
-  fmt_desc: The oldest completed operation to track.
-  with_legacy: true
-# Max number of slow ops to track
-=======
   desc: The oldest completed operation to track.
   with_legacy: true
->>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
 - name: mgr_op_history_slow_op_size
   type: uint
   level: advanced
   default: 20
-<<<<<<< HEAD
-  with_legacy: true
-# track the op if over this threshold
-=======
   desc: Max number of slow ops to track
   with_legacy: true
->>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
 - name: mgr_op_history_slow_op_threshold
   type: float
   level: advanced
   default: 10
-<<<<<<< HEAD
-=======
   desc: Track the op if over this threshold age in seconds
->>>>>>> b2fa50f9e71 (mgr: integrate optracker in ceph-mgr)
   with_legacy: true
 - name: throttler_perf_counter
   type: bool
