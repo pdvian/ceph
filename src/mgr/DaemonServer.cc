@@ -49,8 +49,8 @@
 
 using namespace TOPNSPC::common;
 
-using std::ostream;
 using std::list;
+using std::ostream;
 using std::ostringstream;
 using std::string;
 using std::stringstream;
@@ -98,7 +98,7 @@ DaemonServer::DaemonServer(MonClient *monc_,
       py_modules(py_modules_),
       clog(clog_),
       audit_clog(audit_clog_),
-      asok_hook(NULL),
+      asok_hook(nullptr),
       pgmap_ready(false),
       timer(g_ceph_context, lock),
       tick_event(nullptr),
@@ -128,7 +128,8 @@ class DaemonServerHook : public AdminSocketHook {
   DaemonServer *daemon_server;
 public:
   explicit DaemonServerHook(DaemonServer *o) : daemon_server(o) {}
-  int call(std::string_view admin_command, const cmdmap_t& cmdmap,
+  int call(std::string_view admin_command,
+           const cmdmap_t& cmdmap,
            const bufferlist&,
            Formatter *f,
            std::ostream& errss,
@@ -219,19 +220,14 @@ int DaemonServer::init(uint64_t gid, entity_addrvec_t client_addrs)
   AdminSocket *admin_socket = g_ceph_context->get_admin_socket();
   asok_hook = new DaemonServerHook(this);
   r = admin_socket->register_command("dump_ops_in_flight " \
-				     "name=filterstr,type=CephString,n=N,req=false",
-				     asok_hook,
-				     "show the ops currently in flight");
-  ceph_assert(r == 0);
-  r = admin_socket->register_command("ops " \
-				     "name=filterstr,type=CephString,n=N,req=false",
-				     asok_hook,
-				     "show the ops currently in flight");
+             "name=filterstr,type=CephString,n=N,req=false",
+             asok_hook,
+             "show the ops currently in flight");
   ceph_assert(r == 0);
   r = admin_socket->register_command("dump_blocked_ops " \
-				     "name=filterstr,type=CephString,n=N,req=false",
-				     asok_hook,
-				     "show the blocked ops currently in flight");
+             "name=filterstr,type=CephString,n=N,req=false",
+             asok_hook,
+             "show the blocked ops currently in flight");
   ceph_assert(r == 0);
   r = admin_socket->register_command("dump_blocked_ops_count " \
              "name=filterstr,type=CephString,n=N,req=false",
@@ -239,19 +235,19 @@ int DaemonServer::init(uint64_t gid, entity_addrvec_t client_addrs)
              "show the count of blocked ops currently in flight");
   ceph_assert(r == 0);
   r = admin_socket->register_command("dump_historic_ops " \
-                                     "name=filterstr,type=CephString,n=N,req=false",
-				     asok_hook,
-				     "show recent ops");
+             "name=filterstr,type=CephString,n=N,req=false",
+             asok_hook,
+             "show recent ops");
   ceph_assert(r == 0);
   r = admin_socket->register_command("dump_historic_slow_ops " \
-                                     "name=filterstr,type=CephString,n=N,req=false",
-				     asok_hook,
-				     "show slowest recent ops");
+             "name=filterstr,type=CephString,n=N,req=false",
+             asok_hook,
+             "show slowest recent ops");
   ceph_assert(r == 0);
   r = admin_socket->register_command("dump_historic_ops_by_duration " \
-                                     "name=filterstr,type=CephString,n=N,req=false",
-				     asok_hook,
-				     "show slowest recent ops, sorted by duration");
+             "name=filterstr,type=CephString,n=N,req=false",
+             asok_hook,
+             "show slowest recent ops, sorted by duration");
   ceph_assert(r == 0);
   return 0;
 }
@@ -3221,7 +3217,6 @@ bool DaemonServer::asok_command(
   int ret = 0;
   std::lock_guard l(lock);
   if (admin_command == "dump_ops_in_flight" ||
-      admin_command == "ops" ||
       admin_command == "dump_blocked_ops" ||
       admin_command == "dump_blocked_ops_count" ||
       admin_command == "dump_historic_ops" ||
@@ -3239,40 +3234,39 @@ will start to track new ops received afterwards.";
            inserter(filters, filters.end()));
     }
 
-    if (admin_command == "dump_ops_in_flight" ||
-        admin_command == "ops") {
+    if (admin_command == "dump_ops_in_flight") {
       if (!op_tracker.dump_ops_in_flight(f, false, filters)) {
         ss << error_str;
-	ret = -EINVAL;
-	goto out;
+        ret = -EINVAL;
+        goto out;
       }
     }
-    if (admin_command == "dump_blocked_ops") {
+    else if (admin_command == "dump_blocked_ops") {
       if (!op_tracker.dump_ops_in_flight(f, true, filters)) {
         ss << error_str;
-	ret = -EINVAL;
-	goto out;
+        ret = -EINVAL;
+        goto out;
       }
     }
-    if (admin_command == "dump_blocked_ops_count") {
+    else if (admin_command == "dump_blocked_ops_count") {
       if (!op_tracker.dump_ops_in_flight(f, true, filters, true)) {
         ss << error_str;
-	ret = -EINVAL;
-	goto out;
+        ret = -EINVAL;
+        goto out;
       }
     }
-    if (admin_command == "dump_historic_ops") {
+    else if (admin_command == "dump_historic_ops") {
       if (!op_tracker.dump_historic_ops(f, false, filters)) {
         ss << error_str;
-	ret = -EINVAL;
-	goto out;
+        ret = -EINVAL;
+        goto out;
       }
     }
-    if (admin_command == "dump_historic_ops_by_duration") {
+    else if (admin_command == "dump_historic_ops_by_duration") {
       if (!op_tracker.dump_historic_ops(f, true, filters)) {
         ss << error_str;
-	ret = -EINVAL;
-	goto out;
+        ret = -EINVAL;
+        goto out;
       }
     }
   }

@@ -6186,10 +6186,10 @@ options:
   level: dev
   desc: Time to wait during shutdown to deregister service with mgr
   default: 1
-# enable/disable MGR op tracking
 - name: mgr_enable_op_tracker
   type: bool
   level: advanced
+  desc: Enable / disable MGR Op Tracker
   default: true
   with_legacy: true
 # The number of shards for holding the ops

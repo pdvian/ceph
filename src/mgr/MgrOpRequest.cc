@@ -1,13 +1,13 @@
 // -*- mode:C++; tab-width:8; c-basic-offset:2; indent-tabs-mode:t -*- 
 
 #include "MgrOpRequest.h"
-#include "common/Formatter.h"
 #include <iostream>
 #include <vector>
 #include "common/debug.h"
 #include "common/config.h"
-#include "msg/Message.h"
+#include "common/Formatter.h"
 #include "include/ceph_assert.h"
+#include "msg/Message.h"
 
 #ifdef WITH_LTTNG
 #define TRACEPOINT_DEFINE
@@ -110,9 +110,11 @@ void MgrOpRequest::mark_flag_point_string(uint8_t flag, const string& s) {
 bool MgrOpRequest::filter_out(const set<string>& filters)
 {
   set<entity_addr_t> addrs;
-  for (auto it = filters.begin(); it != filters.end(); it++) {
+//  for (auto it = filters.begin(); it != filters.end(); it++) {
+  for (const auto& filter : filters) {
     entity_addr_t addr;
-    if (addr.parse((*it).c_str())) {
+//    if (addr.parse((*it).c_str())) {
+    if (addr.parse(filter.c_str())) {
       addrs.insert(addr);
     }
   }

@@ -22,11 +22,11 @@
 #include "msg/Messenger.h"
 #include "auth/Auth.h"
 #include "common/Finisher.h"
+#include "common/TrackedOp.h"
 #include "mon/MgrMap.h"
 
 #include "DaemonServer.h"
 #include "PyModuleRegistry.h"
-#include "MgrOpRequest.h"
 
 #include "DaemonState.h"
 #include "ClusterState.h"

@@ -60,7 +60,7 @@ public:
     if (request) {
       return request->get_source();
     } else {
-      return entity_name_t();
+      return {};
     }
   }
   uint8_t state_flag() const {
@@ -79,7 +79,6 @@ public:
 
   static std::string get_state_string(uint8_t flag) {
     std::string flag_point;
-
     switch(flag) {
       case flag_started:
         flag_point = "started";
